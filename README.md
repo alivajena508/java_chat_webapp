@@ -1,106 +1,102 @@
 # WebChatApplication
 
-A web based chat application created in java using Servlet, JSP, MySQL, CSS, JavaScript. It need atleast Apache Tomcat 10 web server to run.<br>
-You can chat with your friends if you deploy this. Otherwise you can use a remote database, once you add tables on database you can simply distibute this application with your friends by using war files. 
+In my studing year of computer science studies, I was eager to apply what I learned in the classroom to a practical project. This WebChatApplication is the result of that ambition. Using Java Servlets, JSP, and MySQL, I developed a web-based chat application that demonstrates my ability to build full-stack applications and tackle real-world problems.
 
-## Technologies Used 
-  1. Servlet 
-  2. JSP
-  3. HTML, CSS, JavaScript
-  4. MySQL
-  5. Apache Tomcat-10 web server
-  6. Created in Eclipse Enterprise Edition IDE
+A web-based chat application built with Java, featuring real-time messaging using Servlets, JSP, MySQL, CSS, and JavaScript. Requires Apache Tomcat 10 or later. Deploy and chat with friends, or distribute as a WAR file with a remote database.
+
+## Features
+
+* Real-time chat functionality.
+* User authentication and registration.
+* Database-driven message storage.
+* Responsive design.
+
+## Technologies Used
+
+* **Backend:** Java Servlets, JSP
+* **Frontend:** HTML, CSS, JavaScript
+* **Database:** MySQL
+* **Server:** Apache Tomcat 10+
+* **IDE:** Eclipse Enterprise Edition
 
 ## Screenshots
 
-<div style="display: flex;flex-direction: column; grid-gap: 10px;">
-    <div style="display: flex; grid-gap: 10px;">
-        <img src="src/main/webapp/images/ch1.png" alt="screenshots" width="49%" style="border: 2px solid lightgreen"/>
-        <img src="src/main/webapp/images/ch2.png" alt="screenshots" width="49%" style="border: 2px solid lightgreen"/>
-    </div>
-    <div style="display: flex; grid-gap: 10px;">
-        <img src="src/main/webapp/images/ch3.png" alt="screenshots" width="49%" style="border: 2px solid lightgreen"/>
-        <img src="src/main/webapp/images/ch4.png" alt="screenshots" width="49%" style="border: 2px solid lightgreen"/>
-    </div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+    <img src="src/main/webapp/images/ch1.png" alt="Chat Screenshot 1" width="48%" style="border: 2px solid lightgreen; margin-bottom: 10px;">
+    <img src="src/main/webapp/images/ch2.png" alt="Chat Screenshot 2" width="48%" style="border: 2px solid lightgreen; margin-bottom: 10px;">
+    <img src="src/main/webapp/images/ch3.png" alt="Chat Screenshot 3" width="48%" style="border: 2px solid lightgreen; margin-bottom: 10px;">
+    <img src="src/main/webapp/images/ch4.png" alt="Chat Screenshot 4" width="48%" style="border: 2px solid lightgreen; margin-bottom: 10px;">
 </div>
-<br>
 
-## How to Use ?
-  To run this application you need to set up this project on your <b>Eclipse EE IDE</b> here is how to do that : 
+## Getting Started
 
-  <b>Step-1 :</b> After downloading, you have to keep this project on your workspace. Check your workspace from Eclipse also your can change your workspace by <br>
-   <b>file->SwitchWorkspace->Other</b>
-   and choose your workspace.
+Follow these steps to set up and run the WebChatApplication on your local machine.
 
-  <b>Stop-2 :</b> Download web development tools in your Eclipse IDE.<br>
-   Go to  Help->Eclipse Marketplace->on search tab you can search for tools search 'web' on search area and download the tool <br>
-          suggested one is :<i> Eclipse Enterprise Java and web developer tools 3.31</i><br>
-          Or you can download anyone who supports servlet, jsp, and others mentioned above.
+1.  **Prerequisites:**
+    * Eclipse Enterprise Edition IDE
+    * Apache Tomcat 10+
+    * MySQL Database
+    * Java Development Kit (JDK)
 
- <b>Step-3 :</b> Download Apache tomcat server make sure you use tomcat 10 and above. You can download this form official website [tomcat.apache.org](https://tomcat.apache.org/download-10.cgi), also Unzip it.
+2.  **Import Project:**
+    * Download or clone the repository.
+    * In Eclipse, go to `File > Open Project from File System...`.
+    * Select the project directory and click `Finish`.
 
-<b>Step-4 :</b> Setup Tocat with Eclipse : you can setup tomcat go to Windows->Show Views->Servers<br>
-A new tab will open where console located, with the name of server click on the given link to add new server -> choose your company and version of server you intalled, in my case this is <b>Apache->Tomcat 10 ->click on next-> locate the Apache tomcat directory you downloaded in previous step.-> Hit on next if available otherwise click on finish.</b>
+3.  **Install Web Development Tools (If Needed):**
+    * Go to `Help > Eclipse Marketplace...`.
+    * Search for "Eclipse Enterprise Java and Web Developer Tools" and install.
 
-<b>Step-5 :</b> Open Your project in eclipse : 
-     go to file->Open Project from file system-> locate your workspace and select the project(WebChatApp) folder -> click on open -> finish
+4.  **Configure Tomcat Server:**
+    * Go to `Window > Show View > Servers`.
+    * Click "No servers are available. Click this link to create a new server...".
+    * Select your Tomcat version and click `Next`.
+    * Browse to your Tomcat installation directory and click `Finish`.
 
-<b>Step-6 :</b> Database Setup : to setup your database you can use the file database/chat.sql.
-  using phpmyadmin = if you are using php myadmin then simpley create a new database with the name of 'chat' and then you can import file database/chat.sql from your import tab.
-  
-  using mysql command line client OR workbench - 
-  you can simple run the given queries to create your database setup: 
-    
-  creating a database :
-    
-```sql
-CREATE DATABASE chat;
-```
+5.  **Database Setup:**
+    * **Using phpMyAdmin:**
+        * Create a database named `chat`.
+        * Import the `database/chat.sql` file.
+    * **Using MySQL Command Line or Workbench:**
+        * Run the following SQL commands:
 
-  using the database :
+        ```sql
+        CREATE DATABASE chat;
+        USE chat;
+        CREATE TABLE `messages` (
+            `msg_id` int(20) NOT NULL AUTO_INCREMENT,
+            `incoming_msg_id` varchar(255) NOT NULL,
+            `outgoing_msg_id` varchar(255) NOT NULL,
+            `msg` varchar(1000) NOT NULL,
+            PRIMARY KEY (`msg_id`)
+        ) AUTO_INCREMENT = 100;
+        CREATE TABLE `users` (
+            `user_id` int(11) NOT NULL AUTO_INCREMENT,
+            `unique_id` varchar(200) NOT NULL,
+            `fname` varchar(255) NOT NULL,
+            `lname` varchar(255) NOT NULL,
+            `email` varchar(255) NOT NULL,
+            `password` varchar(255) NOT NULL,
+            `img` varchar(400) NOT NULL,
+            `status` varchar(255) NOT NULL,
+            PRIMARY KEY (`user_id`)
+        ) AUTO_INCREMENT = 100;
+        ```
 
-```sql
-USE chat;
-```
+6.  **Run the Application:**
+    * Right-click on the project in Eclipse.
+    * Select `Run As > Run on Server`.
+    * Choose your Tomcat server and click `Finish`.
 
-  creating a table for messages :
+7.  **Access the Application:**
+    * Open your web browser and go to `http://localhost:8080/WebChatApp/`.
 
-```sql
-CREATE TABLE `messages` (
-  `msg_id` int(20) NOT NULL AUTO_INCREMENT,
-  `incoming_msg_id` varchar(255) NOT NULL,
-  `outgoing_msg_id` varchar(255) NOT NULL,
-  `msg` varchar(1000) NOT NULL,
- PRIMARY KEY (`msg_id`)) AUTO_INCREMENT = 100;
-``` 
+## Deployment
 
-  creating a table for users :
-
-```sql
-CREATE TABLE `users` (
-  `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `unique_id` varchar(200) NOT NULL,
-  `fname` varchar(255) NOT NULL,
-  `lname` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `img` varchar(400) NOT NULL,
-  `status` varchar(255) NOT NULL,
- PRIMARY KEY (`msg_id`)) AUTO_INCREMENT = 100;
-```
-    
- <b>Step-7 :</b> Now you are ready to run the application: Right click on project(WebChatApp)->Run As->Run on Server->it may ask you what applications you want to run choose  WebChatApp and finish
- 
-<b>Step-8 :</b> After Starting the server you can access the application by your browser: open your browser and search for [http://localhost:8080/ChatApp/](/)
-
-<b>Step-9 :</b> I hope this will helpful for you.
-
-
+To deploy this application to other environments, you can create a WAR file from eclipse, and then deploy that WAR file to any web server that supports the java servlets and JSP.
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first
-to discuss what you would like to change.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
-
+Please ensure tests are updated as appropriate.
